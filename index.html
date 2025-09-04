@@ -21,20 +21,20 @@
       --card: #f8fafc;
       --radius: 10px;
       --max-width: 1100px;
-      --header-padding: 32px; /* Increased for header margin */
-      --cta-btn: #ff7b2d; /* New button color for quote */
+      --header-padding: 32px;
+      --cta-btn: #ff7b2d;
       --cta-btn-hover: #ffb03b;
     }
     html,body{height:100%;margin:0;font-family: 'Lato', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color:var(--navy); background:var(--bg); -webkit-font-smoothing:antialiased;}
     .container{max-width:var(--max-width);margin:0 auto;padding:0 20px;}
     header{
-      background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.98)); 
-      position:sticky; 
-      top:0; 
-      z-index:1000; 
+      background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.98));
+      position:sticky;
+      top:0;
+      z-index:1000;
       border-bottom:1px solid #eee;
-      padding-left: var(--header-padding); /* Add margin to left */
-      padding-right: var(--header-padding); /* Add margin to right */
+      padding-left: var(--header-padding);
+      padding-right: var(--header-padding);
     }
     .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
     .brand{display:flex;align-items:center;gap:12px;}
@@ -77,11 +77,33 @@
     .feature{background:var(--card);padding:18px;border-radius:12px;text-align:center;}
     .feature h3{margin:10px 0 6px;font-family:'Montserrat',sans-serif;font-size:18px;color:var(--navy);}
     .feature p{color:var(--muted);margin:0;font-size:14px}
-    .two-col{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start;}
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 380px;
+      gap:28px;
+      align-items:start;
+      overflow-x:auto;
+      max-width:100%;
+    }
     .card{background:var(--card);padding:18px;border-radius:12px}
     #map{width:100%;height:380px;border-radius:10px;border:1px solid #e6eef6;overflow:hidden;}
-    .estimator{display:flex;gap:18px;align-items:center;margin-top:8px;}
-    .estimator select,input{padding:12px;border-radius:10px;border:1px solid #e6eef6;background:white;font-size:15px}
+    .estimator{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      margin-top:8px;
+      flex-wrap:wrap;
+      max-width:100%;
+    }
+    .estimator select,
+    .estimator input{
+      padding:12px;
+      border-radius:10px;
+      border:1px solid #e6eef6;
+      background:white;
+      font-size:15px;
+      min-width:120px;
+    }
     .estimate-output{background:linear-gradient(90deg,var(--sun-1),var(--sun-2));color:white;padding:12px 18px;border-radius:10px;font-weight:700;}
     footer{border-top:1px solid #eee;padding:22px 0;margin-top:24px;color:var(--muted);font-size:14px;}
     footer .cols{display:flex;gap:40px;flex-wrap:wrap;justify-content:space-between}
@@ -93,11 +115,17 @@
       .hero-visual{width:100%;height:220px}
       nav{display:none}
       header{padding-left:16px;padding-right:16px;}
+      .estimator{flex-direction:column;align-items:flex-start;}
     }
     @media (max-width:480px){
       .brand .title{font-size:16px}
       .hero h1{font-size:28px}
       header{padding-left:8px;padding-right:8px;}
+      .estimator{flex-direction:column;align-items:flex-start;}
+      .estimator select,
+      .estimator input,
+      .cta-btn,
+      .estimate-output{width:100%;margin-bottom:8px;}
     }
     .fade-up{opacity:0;transform:translateY(8px);transition:all 600ms cubic-bezier(.2,.9,.3,1);}
     .fade-up.visible{opacity:1;transform:none;}
@@ -109,7 +137,6 @@
       <div class="topbar">
         <div class="brand">
           <div class="logo">
-            <!-- Logo image: please upload logo.png to your repo root -->
             <img src="logo.png" alt="Living Sky Billboards Logo">
           </div>
           <span class="title">Living Sky Billboards</span>
@@ -134,7 +161,6 @@
         </div>
       </div>
       <div class="hero-visual">
-        <!-- Use logo image in the hero visual instead of landscape photo -->
         <img src="logo.png" alt="Living Sky Billboards Logo">
       </div>
     </div>
@@ -165,11 +191,13 @@
       <div class="two-col">
         <div>
           <ul>
-            <li><strong>Highway 219 (Dakota Dunes Casino)</strong> — 4 faces, 2 locations</li>
-            <li><strong>Highway 11 (Blackstrap, Clavet)</strong> — 6 faces, 3 locations</li>
-            <li><strong>Saskatoon South City</strong> — 2 faces, near major retail & traffic corridors</li>
+            <li><strong>Highway 219 (Dakota Dunes Casino)</strong> — 4 faces, 2 locations <br><span style="color:var(--sun-2);font-weight:bold;">Coming Soon!</span></li>
+            <li><strong>Highway 11 (Blackstrap, Clavet)</strong> — 6 faces, 3 locations <br><span style="color:var(--sun-2);font-weight:bold;">Coming Soon!</span></li>
+            <li><strong>Saskatoon South City</strong> — 2 faces, near major retail & traffic corridors <br><span style="color:var(--sun-2);font-weight:bold;">Coming Soon!</span></li>
           </ul>
-          <p style="color:var(--muted);margin-top:10px;">All locations feature illuminated, full-size static billboards. Custom sizes available.</p>
+          <p style="color:var(--muted);margin-top:10px;">
+            <strong>Note:</strong> All billboard locations are currently under development and not yet available for bookings. Please check back soon or contact us for updates.
+          </p>
         </div>
         <div class="card">
           <div id="map"></div>
