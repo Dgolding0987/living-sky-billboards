@@ -30,8 +30,8 @@
     header{background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.98)); position:sticky; top:0; z-index:1000; border-bottom:1px solid #eee;}
     .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
     .brand{display:flex;align-items:center;gap:12px;}
-    .brand .logo{width:56px;height:56px;border-radius:8px;background:linear-gradient(90deg,var(--sun-1),var(--sun-2));display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
-    .brand .logo svg{width:38px;height:38px;}
+    .brand .logo{width:64px;height:64px;border-radius:8px;background:none;display:flex;align-items:center;justify-content:center;}
+    .brand .logo img{width:100%;height:100%;object-fit:contain;}
     .brand .title{font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.4px;color:var(--navy);}
     nav{display:flex;gap:20px;align-items:center;}
     nav a{color:var(--navy);text-decoration:none;font-weight:600;font-size:15px;}
@@ -79,8 +79,8 @@
       <div class="topbar">
         <div class="brand">
           <div class="logo">
-            <!-- Example SVG logo, you may replace it -->
-            <svg viewBox="0 0 48 48"><rect x="8" y="16" width="32" height="16" rx="5" fill="#fff"/><rect x="14" y="22" width="20" height="4" rx="2" fill="#ffb03b"/></svg>
+            <!-- Logo image: please upload logo.png to your repo root -->
+            <img src="logo.png" alt="Living Sky Billboards Logo">
           </div>
           <span class="title">Living Sky Billboards</span>
         </div>
@@ -104,8 +104,8 @@
         </div>
       </div>
       <div class="hero-visual">
-        <!-- Placeholder for a billboard image or map -->
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Billboard" style="width:100%;height:100%;object-fit:cover;">
+        <!-- Prairie sunset image from Unsplash, matches your theme -->
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Prairie Sunset" style="width:100%;height:100%;object-fit:cover;">
       </div>
     </div>
   </div>
