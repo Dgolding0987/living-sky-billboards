@@ -3,57 +3,107 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Living Sky Billboards — Billboard Advertising for Saskatoon & Hwy 219 / Hwy 11</title>
-  <meta name="description" content="Living Sky Billboards — premium static billboard rentals across Saskatoon, Highway 219 (to Dakota Dunes Casino) and Highway 11 (to Blackstrap & Clavet). Request a quote today." />
+  <title>Living Sky Billboards — Billboard Advertising Saskatoon & Hwy 219 / Hwy 11</title>
+  <meta name="description" content="Living Sky Billboards — premium static billboard rentals across Saskatoon, Highway 219 (to Dakota Dunes Casino) and Highway 11 (to Blackstrap & Clavet). Request a[...]
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
-
-  <!-- Leaflet CSS (for interactive map) -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-sA+e2bZ1b9g6v3g6pr6z5u8iQ4TiaM3fQ0pQv+0rWyk=" crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 
   <style>
     :root{
-      --navy: #0b2b3a; /* deep navy for trust */
-      --sky: #3aa0d8; /* sky blue accent */
-      --sun-1: #ffb03b; /* warm gold */
-      --sun-2: #ff7b2d; /* orange */
-      --muted: #6b7280; /* muted text */
+      --navy: #0b2b3a;
+      --sky: #3aa0d8;
+      --sun-1: #ffb03b;
+      --sun-2: #ff7b2d;
+      --muted: #6b7280;
       --bg: #ffffff;
       --card: #f8fafc;
       --radius: 10px;
       --max-width: 1100px;
+      --header-padding: 32px;
+      --cta-btn: #ff7b2d;
+      --cta-btn-hover: #ffb03b;
     }
-    html,body{height:100%;margin:0;font-family: 'Lato', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color:var(--navy); background:var(--bg); -webkit-font-smoothing:antialiased;}
+    html,body{height:100%;margin:0;font-family: 'Lato', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; color:var(--navy); background:var(--bg); -webkit-font-smoothing:antialias[...]
     .container{max-width:var(--max-width);margin:0 auto;padding:0 20px;}
-    header{background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.98)); position:sticky; top:0; z-index:1000; border-bottom:1px solid #eee;}
+    header{
+      background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.98));
+      position:sticky;
+      top:0;
+      z-index:1000;
+      border-bottom:1px solid #eee;
+      padding-left: var(--header-padding);
+      padding-right: var(--header-padding);
+    }
     .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
     .brand{display:flex;align-items:center;gap:12px;}
-    .brand .logo{width:56px;height:56px;border-radius:8px;background:linear-gradient(90deg,var(--sun-1),var(--sun-2));display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
-    .brand .logo svg{width:38px;height:38px;}
+    .brand .logo{width:64px;height:64px;border-radius:8px;background:none;display:flex;align-items:center;justify-content:center;}
+    .brand .logo img{width:100%;height:100%;object-fit:contain;}
     .brand .title{font-family:'Montserrat',sans-serif;font-weight:700;letter-spacing:0.4px;color:var(--navy);}
     nav{display:flex;gap:20px;align-items:center;}
     nav a{color:var(--navy);text-decoration:none;font-weight:600;font-size:15px;}
-    .cta-btn{padding:10px 16px;background:linear-gradient(90deg,var(--sun-1),var(--sun-2)); color:white;border:none;border-radius:999px;font-weight:700;cursor:pointer;box-shadow:0 6px 18px rgba(255,123,45,0.12);}
-    .cta-btn:active{transform:translateY(1px);}
+    .cta-btn{
+      padding:10px 16px;
+      background:var(--cta-btn);
+      color:white;
+      border:none;
+      border-radius:999px;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow:0 6px 18px rgba(255,123,45,0.12);
+      transition:background 0.2s;
+    }
+    .cta-btn:hover,
+    .cta-btn:active{background:var(--cta-btn-hover);}
     .hero{display:flex;align-items:center;gap:40px;padding:48px 0 64px;}
     .hero-content{flex:1}
     .hero h1{font-family:'Montserrat',sans-serif;font-weight:700;margin:0;font-size:40px;line-height:1.05;color:var(--bg); text-shadow:0 2px 12px rgba(0,0,0,0.25);}
     .hero p{color:rgba(255,255,255,0.95);font-size:18px;margin:14px 0 22px;}
     .hero .hero-ctas{display:flex;gap:12px;}
     .btn-outline{padding:10px 18px;border-radius:999px;border:2px solid rgba(255,255,255,0.95);background:transparent;color:white;font-weight:700;cursor:pointer;}
-    .hero-visual{width:420px;height:260px;background:transparent;border-radius:12px;overflow:hidden;box-shadow:0 6px 30px rgba(11,43,58,0.18);}
+    .hero-visual{
+      width:420px;height:260px;background:transparent;border-radius:12px;
+      overflow:hidden;box-shadow:0 6px 30px rgba(11,43,58,0.18);
+      display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(90deg,var(--sky) 0%, var(--sun-1) 100%);
+    }
+    .hero-visual img{
+      width:80%;height:80%;object-fit:contain;
+      background:transparent;
+    }
     section{padding:40px 0;}
     .features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:18px;}
     .feature{background:var(--card);padding:18px;border-radius:12px;text-align:center;}
-    .feature h3{margin:10px 0 6px;font-family:'Montserrat',sans-serif;font-size:18px;color:var(--navy);}
+    .feature h3{Margin:10px 0 6px;font-family:'Montserrat',sans-serif;font-size:18px;color:var(--navy);}
     .feature p{color:var(--muted);margin:0;font-size:14px}
-    .two-col{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start;}
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 380px;
+      gap:28px;
+      align-items:start;
+      overflow-x:auto;
+      max-width:100%;
+    }
     .card{background:var(--card);padding:18px;border-radius:12px}
     #map{width:100%;height:380px;border-radius:10px;border:1px solid #e6eef6;overflow:hidden;}
-    .estimator{display:flex;gap:18px;align-items:center;margin-top:8px;}
-    .estimator select,input{padding:12px;border-radius:10px;border:1px solid #e6eef6;background:white;font-size:15px}
+    .estimator{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      margin-top:8px;
+      flex-wrap:wrap;
+      max-width:100%;
+    }
+    .estimator select,
+    .estimator input{
+      padding:12px;
+      border-radius:10px;
+      border:1px solid #e6eef6;
+      background:white;
+      font-size:15px;
+      min-width:120px;
+    }
     .estimate-output{background:linear-gradient(90deg,var(--sun-1),var(--sun-2));color:white;padding:12px 18px;border-radius:10px;font-weight:700;}
     footer{border-top:1px solid #eee;padding:22px 0;margin-top:24px;color:var(--muted);font-size:14px;}
     footer .cols{display:flex;gap:40px;flex-wrap:wrap;justify-content:space-between}
@@ -64,10 +114,19 @@
       .hero{flex-direction:column;align-items:flex-start}
       .hero-visual{width:100%;height:220px}
       nav{display:none}
+      header{padding-left:16px;padding-right:16px;}
+      .estimator{flex-direction:column;align-items:flex-start;}
     }
     @media (max-width:480px){
       .brand .title{font-size:16px}
       .hero h1{font-size:28px}
+      /* Increased header padding on small screens so content doesn't touch the edge */
+      header{padding-left:20px;padding-right:20px;}
+      .estimator{flex-direction:column;align-items:flex-start;}
+      .estimator select,
+      .estimator input,
+      .cta-btn,
+      .estimate-output{width:100%;margin-bottom:8px;}
     }
     .fade-up{opacity:0;transform:translateY(8px);transition:all 600ms cubic-bezier(.2,.9,.3,1);}
     .fade-up.visible{opacity:1;transform:none;}
@@ -79,8 +138,7 @@
       <div class="topbar">
         <div class="brand">
           <div class="logo">
-            <!-- Example SVG logo, you may replace it -->
-            <svg viewBox="0 0 48 48"><rect x="8" y="16" width="32" height="16" rx="5" fill="#fff"/><rect x="14" y="22" width="20" height="4" rx="2" fill="#ffb03b"/></svg>
+            <img src="logo.png" alt="Living Sky Billboards Logo">
           </div>
           <span class="title">Living Sky Billboards</span>
         </div>
@@ -104,8 +162,7 @@
         </div>
       </div>
       <div class="hero-visual">
-        <!-- Placeholder for a billboard image or map -->
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Billboard" style="width:100%;height:100%;object-fit:cover;">
+        <img src="logo.png" alt="Living Sky Billboards Logo">
       </div>
     </div>
   </div>
@@ -135,11 +192,13 @@
       <div class="two-col">
         <div>
           <ul>
-            <li><strong>Highway 219 (Dakota Dunes Casino)</strong> — 4 faces, 2 locations</li>
-            <li><strong>Highway 11 (Blackstrap, Clavet)</strong> — 6 faces, 3 locations</li>
-            <li><strong>Saskatoon South City</strong> — 2 faces, near major retail & traffic corridors</li>
+            <li><strong>Highway 219 (Dakota Dunes Casino)</strong> — 4 faces, 2 locations <br><span style="color:var(--sun-2);font-weight:bold;">Coming Soon!</span></li>
+            <li><strong>Highway 11 (Blackstrap, Clavet)</strong> — 6 faces, 3 locations <br><span style="color:var(--sun-2);font-weight:bold;">Coming Soon!</span></li>
+            <li><strong>Saskatoon South City</strong> — 2 faces, near major retail & traffic corridors <br><span style="color:var(--sun-2);font-weight:bold;">Coming Soon!</span></li>
           </ul>
-          <p style="color:var(--muted);margin-top:10px;">All locations feature illuminated, full-size static billboards. Custom sizes available.</p>
+          <p style="color:var(--muted);margin-top:10px;">
+            <strong>Note:</strong> All billboard locations are currently under development and not yet available for bookings. Please check back soon or contact us for updates.
+          </p>
         </div>
         <div class="card">
           <div id="map"></div>
@@ -222,9 +281,7 @@
     </div>
   </footer>
 
-  <!-- Leaflet.js for interactive map -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-o9N1j6kF1fU1g8eU06kqA2r1pGz7rj9nHMooh1M8lCM=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script>
     window.onload = function() {
       var map = L.map('map').setView([52.027, -106.7], 10);
@@ -232,7 +289,6 @@
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(map);
 
-      // Example billboard locations
       var locations = [
         {lat:52.014, lng:-106.624, label:"Hwy 219 Billboard"},
         {lat:52.068, lng:-106.498, label:"Hwy 11 Billboard"},
@@ -244,7 +300,6 @@
           .bindPopup(loc.label);
       });
     };
-    // Animation for fade-up
     window.addEventListener('scroll',()=>{
       document.querySelectorAll('.fade-up').forEach(function(el){
         if(el.getBoundingClientRect().top < window.innerHeight - 40){
